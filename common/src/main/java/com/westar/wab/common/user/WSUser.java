@@ -39,9 +39,9 @@ public class WSUser {
     @Indexed(direction = IndexDirection.ASCENDING)
     private int order;
 
-    public WSUser(String username, String password) {
+    public WSUser(String nick, String password) {
         this.uid = UUID.randomUUID().toString();
-        this.username = username;
+        this.nick = nick;
         this.password = password;
     }
 

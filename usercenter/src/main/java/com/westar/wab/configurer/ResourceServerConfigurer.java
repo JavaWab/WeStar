@@ -29,7 +29,7 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
         http
                 .antMatcher("/**")
                 .authorizeRequests()
-                    .antMatchers("/", "/user/**")
+                    .antMatchers("/", "/user/**", "/files/**")
                     .permitAll()
                 .anyRequest()
                     .authenticated();

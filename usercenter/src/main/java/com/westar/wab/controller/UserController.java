@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,10 +36,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<Map> addUser(@RequestBody UserVO user){
+    public ResponseEntity<Map> addUser(@RequestBody @Validated UserVO user){
         WSUser tuser = new WSUser(user.getUsername(), user.getPassword());
         tuser.setPhone(user.getPhone());
-
+        tuser.setPhone();
+        tuser.setBirthday();
+        tuser.setNick();
         List<String> authorities = new ArrayList<>();
         authorities.add("USER");
         tuser.setAuthorities(authorities);
