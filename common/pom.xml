@@ -13,11 +13,6 @@
     <description>common jar</description>
 
     <dependencies>
-        <dependency>
-            <groupId>com.westar.wab</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>
