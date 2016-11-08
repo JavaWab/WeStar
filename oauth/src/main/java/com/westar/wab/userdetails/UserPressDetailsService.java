@@ -1,8 +1,7 @@
 package com.westar.wab.userdetails;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.mongodb.BasicDBObject;
-import com.mongodb.util.JSON;
+import com.westar.wab.common.utils.BlowfishEncryptor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ouyasukuni on 2016/11/1.
@@ -24,6 +24,8 @@ import java.util.*;
 public class UserPressDetailsService implements UserDetailsService {
     @Autowired
     private MongoTemplate mongoTemplate;
+    @Autowired
+    private BlowfishEncryptor blowfishEncryptor;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -36,7 +38,7 @@ public class UserPressDetailsService implements UserDetailsService {
                 authorityList.add(new SimpleGrantedAuthority(authorities.getString(i)));
             }
         }
-        User idsuser = new User(user.getString("username"), user.getString("password"), authorityList);
+        User idsuser = new User(user.getString("username"), blowfishEncryptor.decryptString(user.getString("password")), authorityList);
         return idsuser;
     }
 }

@@ -10,9 +10,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>common</module>
         <module>oauth</module>
         <module>usercenter</module>
         <module>font</module>
-        <module>common</module>
     </modules>
 </project>
